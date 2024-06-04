@@ -3,6 +3,7 @@ import {AsyncPipe, DatePipe, TitleCasePipe} from "@angular/common";
 import {MoviesService} from "../services/movies.service";
 import {Observable} from "rxjs";
 import {Movie} from "../models/movie";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-movies',
@@ -10,7 +11,8 @@ import {Movie} from "../models/movie";
   imports: [
     AsyncPipe,
     DatePipe,
-    TitleCasePipe
+    TitleCasePipe,
+    RouterLink
   ],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss'

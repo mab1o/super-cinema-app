@@ -10,7 +10,12 @@ export class MoviesService {
   private readonly httpClient = inject(HttpClient)
 
   private readonly url = "http://localhost:8080/movies"
+
   getMovies(): Observable<Movie[]> {
-      return this.httpClient.get<Movie[]>(this.url);
-    }
+    return this.httpClient.get<Movie[]>(this.url);
+  }
+
+  addMovie(movie: Movie): Observable<Movie> {
+    return this.httpClient.post<Movie>(this.url, movie);
+  }
 }
