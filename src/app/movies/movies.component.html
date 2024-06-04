@@ -1,1 +1,25 @@
-<p>movies works!</p>
+<h1>Les Films</h1>
+<table class="table table-hover table-bordered">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Titre</th>
+    <th>Date de sortie</th>
+    <th>Réalisateur</th>
+    <th>Note</th>
+    <th>Synopsis</th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (movie of movies$ | async; track movie.id) {
+      <tr>
+        <td> {{ movie.id }}</td>
+        <td>{{ movie.title }}</td>
+        <td>{{ movie.releaseDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ movie.director | titlecase }}</td>
+        <td>{{ movie.rate }}</td>
+        <td>{{ movie.synopsis }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
