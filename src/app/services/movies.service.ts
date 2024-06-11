@@ -22,4 +22,14 @@ export class MoviesService {
   deleteMovie(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.url}/${id}`);
   }
+
+  updateMovie(movie: Movie): Observable<Movie> {
+    const urlWithId = `${this.url}/${movie.id}`;
+    return this.httpClient.put<Movie>(urlWithId, movie);
+  }
+
+  getMovie(id: number): Observable<Movie> {
+    const urlWithId = `${this.url}/${id}`;
+    return this.httpClient.get<Movie>(urlWithId);
+  }
 }
