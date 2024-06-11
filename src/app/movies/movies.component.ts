@@ -1,7 +1,6 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {AsyncPipe, DatePipe, TitleCasePipe} from "@angular/common";
 import {MoviesService} from "../services/movies.service";
-import {Observable} from "rxjs";
 import {Movie} from "../models/movie";
 import {RouterLink} from "@angular/router";
 
@@ -17,7 +16,18 @@ import {RouterLink} from "@angular/router";
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss'
 })
-export class MoviesComponent {
+export class MoviesComponent implements OnInit {
   private readonly moviesService = inject(MoviesService)
-  movies$: Observable<Movie[]> = this.moviesService.getMovies()
+
+  movies: Movie[] = []
+
+  ngOnInit(): void {
+    this.moviesService.getMovies().subscribe(movies => this.movies = movies);
+  }
+
+  deleteMovie(id: number): void {
+    this.moviesService.deleteMovie(id).subscribe(() =>
+      this.movies = this.movies.filter(film => film.id !== id)
+    );
+  }
 }
